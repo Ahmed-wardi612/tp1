@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
 
     // materialApp est l'application principale et contient les parametres de l'application
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Hello iset',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -31,9 +31,9 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: .fromSeed(seedColor: Colors.blue),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Mon premier projet - Ahmed Wardi'),
     );
   }
 }
@@ -70,6 +70,18 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+  }
+  void decrementCounter(){
+    setState(){
+      if (_counter > 0){
+        _counter--;
+      }
+    }
+  }
+  void resetCounter(){
+    setState(){
+      _counter = 0;
+    }
   }
 
   @override
@@ -119,11 +131,31 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+
+      floatingActionButton: Row(
+  mainAxisAlignment: MainAxisAlignment.end,
+  children: [
+    FloatingActionButton(
+      heroTag: 'dec',
+      onPressed: decrementCounter,
+      child: const Icon(Icons.remove),
+    ),
+    const SizedBox(width: 10),
+
+    FloatingActionButton(
+      heroTag: 'reset',
+      onPressed: resetCounter,
+      child: const Icon(Icons.refresh),
+    ),
+    const SizedBox(width: 10),
+
+    FloatingActionButton(
+      heroTag: 'inc',
+      onPressed: _incrementCounter,
+      child: const Icon(Icons.add),
+    ),
+  ],
+),
     );
   }
 }
